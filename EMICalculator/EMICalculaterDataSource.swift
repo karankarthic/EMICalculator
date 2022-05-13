@@ -70,7 +70,17 @@ struct ValuesForEMICalcus {
             
             principal = (principal - principalPaidPerMonth).rounded()
             
-            let value = EMITableChartValue.init(month: "\(count)", intrestPaid: eachMontIntreset, balncePrincipal: principal, paidPrincipal: principalPaidPerMonth)
+            let now = Date()
+            let calendar = Calendar.current
+
+            var monthName = ""
+            if let then = calendar.date(byAdding: .month, value: count, to: now) {
+              let dateFormatter = DateFormatter()
+              dateFormatter.dateFormat = "MMM-YY"
+              monthName = dateFormatter.string(from: then)
+            }
+            
+            let value = EMITableChartValue.init(month: "\(monthName)", intrestPaid: eachMontIntreset, balncePrincipal: principal, paidPrincipal: principalPaidPerMonth)
             
             values.values.append(value)
         }
