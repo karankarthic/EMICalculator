@@ -7,9 +7,16 @@
 
 import Foundation
 
-
 struct EMITableChartValue{
+    let month:String
+    let intrestPaid:Double
+    let balncePrincipal:Double
+    let paidPrincipal:Double
     
+}
+
+struct EMITableChartValues{
+    var values:[EMITableChartValue]
 }
 
 struct ValuesForEMICalcus {
@@ -19,7 +26,6 @@ struct ValuesForEMICalcus {
     
     
     func calculateTheEMI() -> Double{
-        
         
         let  LoanAmount : Double = self.principal //loan amount
         let  InterestRate: Double = self.interest //interest rate
@@ -33,7 +39,6 @@ struct ValuesForEMICalcus {
 //        let  totalPayments: Double = monthlyPayments * months
 //        let  yearlyPayments: Double = monthlyPayments * 12
 //        let  totalInterest: Double = totalPayments - LoanAmount
-        
         return monthlyPayments
     }
     
@@ -48,6 +53,39 @@ struct ValuesForEMICalcus {
         let monthylyPayments = calculateTheEMI()
         
         return (monthylyPayments * months)
+    }
+    
+    func counstructValuesForEMITable() -> EMITableChartValues{
+        
+        var values:EMITableChartValues = .init(values: [])
+        let monthlyEMI = calculateTheEMI().rounded()
+        
+        var principal = self.principal.rounded()
+        
+        for count in 1..<(Int((tenure.rounded()*12) + 1)){
+            
+            let eachMontIntreset = getMonthlyIntrest(principal: principal).rounded()
+            
+            let principalPaidPerMonth = (monthlyEMI - eachMontIntreset).rounded()
+            
+            principal = (principal - principalPaidPerMonth).rounded()
+            
+            let value = EMITableChartValue.init(month: "\(count)", intrestPaid: eachMontIntreset, balncePrincipal: principal, paidPrincipal: principalPaidPerMonth)
+            
+            values.values.append(value)
+        }
+        
+        return values
+        
+    }
+    
+    private func getMonthlyIntrest(principal:Double) ->Double{
+        return (calculatePercentage(value: principal, percentageVal: self.interest) / (self.tenure * 12))
+    }
+    
+    private func calculatePercentage(value:Double,percentageVal:Double)->Double{
+        let val = value * percentageVal
+        return val / 100.0
     }
     
     mutating func initWithDefalutData(){
@@ -78,6 +116,11 @@ class EMICalculaterDataSource{
     func emiPerMonth() -> Double{
         
         return data.calculateTheEMI().rounded()
+    }
+    
+    func getEmiChartvalues() -> EMITableChartValues{
+        
+       return data.counstructValuesForEMITable()
     }
     
     func totalEmiInterest() -> Double{

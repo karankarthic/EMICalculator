@@ -17,6 +17,8 @@ class EMICalcuLaterViewController:UIViewController{
     lazy var intrestField = ViewFactory.textField()
     lazy var tenureField = ViewFactory.textField()
     
+    lazy var monthlyEmiLable = ViewFactory.titleLable()
+    
     lazy var tenureChoiceSecment = ViewFactory.returnTenureChoiceSegment()
     
     lazy var wholeWrapper = ViewFactory.stackView()
@@ -39,7 +41,18 @@ class EMICalcuLaterViewController:UIViewController{
         return button
     }()
     
+    lazy var presentChartButton:UIButton = {
+        let button = ViewFactory.button()
+        button.setTitle("EMI Chart", for: .normal)
+        button.backgroundColor = .purple
+        button.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        button.addTarget(self, action: #selector(reset), for: .touchUpInside)
+        return button
+    }()
+    
     var dataSource:EMICalculaterDataSource = .init()
+    
+    var emiChartValues:EMITableChartValues = .init(values: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +71,7 @@ extension EMICalcuLaterViewController{
          principalField.placeholder = "Enter the Principal"
          
          principalLable.backgroundColor = .gray
+        principalField.text = "100000"
          principalLable.layer.cornerRadius = 10
          
          let constructedLayout = ConstructFieldsUiniqueLayout(titleLable: principalLable, valueTextField: principalField)
@@ -71,6 +85,7 @@ extension EMICalcuLaterViewController{
          let wrapper = ViewFactory.wrapperView()
          
          intrestLable.text = "Interest"
+        intrestField.text = "10"
          intrestField.placeholder = "Enter the Interest % "
          
          let constructedLayout = ConstructFieldsUiniqueLayout(titleLable: intrestLable, valueTextField: intrestField)
@@ -102,6 +117,7 @@ extension EMICalcuLaterViewController{
          let wrapper = ViewFactory.wrapperView()
          
          tenureLable.text = "Tenture"
+        tenureField.text = "1"
          tenureField.placeholder = "Enter the Tenture"
          
          let constructedLayout = ConstructFieldsUiniqueLayout(titleLable: tenureLable, valueTextField: tenureField)
@@ -115,7 +131,11 @@ extension EMICalcuLaterViewController{
         wholeWrapper.axis = .vertical
         wholeWrapper.alignment = .center
         wholeWrapper.distribution = .fillEqually
-        wholeWrapper.spacing = 20
+        wholeWrapper.spacing = 10
+        
+        monthlyEmiLable.text = "waiting for calculate"
+        monthlyEmiLable.font = .systemFont(ofSize: 30, weight: .medium)
+        monthlyEmiLable.textAlignment = .center
         
         self.view.addSubview(wholeWrapper)
         
@@ -125,11 +145,16 @@ extension EMICalcuLaterViewController{
         wholeWrapper.addArrangedSubview(tenureChoiceSecment)
         wholeWrapper.addArrangedSubview(calculateButton)
         wholeWrapper.addArrangedSubview(resetButton)
+        wholeWrapper.addArrangedSubview(monthlyEmiLable)
+        wholeWrapper.addArrangedSubview(presentChartButton)
+        
         
         NSLayoutConstraint.activate([
             self.wholeWrapper.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             self.wholeWrapper.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            self.wholeWrapper.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
+            self.wholeWrapper.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            monthlyEmiLable.heightAnchor.constraint(equalToConstant: 50),
+            monthlyEmiLable.widthAnchor.constraint(equalTo: wholeWrapper.widthAnchor)
             ])
         
     }
@@ -155,14 +180,16 @@ extension EMICalcuLaterViewController{
         
         self.dataSource.updateValue(valuesForEMICalcus: .init(principal: principal, interest: interest, tenure: tenureValue))
         
-        print(dataSource.emiPerMonth())
+        monthlyEmiLable.text = "EMI - RS.\(dataSource.emiPerMonth())"
+        
+        emiChartValues = dataSource.getEmiChartvalues()
         
     }
     
     @objc private func reset(){
-        principalField.text = ""
-        intrestField.text = ""
-        tenureField.text = ""
+        principalField.text = "100000"
+        intrestField.text = "10"
+        tenureField.text = "1"
         
         self.dataSource.updateValue(valuesForEMICalcus: .init(principal: 0, interest: 0, tenure: 0))
         self.view.endEditing(true)
