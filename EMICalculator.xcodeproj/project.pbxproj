@@ -16,6 +16,11 @@
 		137C3348282D279D003B907E /* EMICalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137C3347282D279D003B907E /* EMICalculatorTests.swift */; };
 		137C3352282D279D003B907E /* EMICalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137C3351282D279D003B907E /* EMICalculatorUITests.swift */; };
 		137C3354282D279D003B907E /* EMICalculatorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137C3353282D279D003B907E /* EMICalculatorUITestsLaunchTests.swift */; };
+		137C3361282DE3BE003B907E /* EMICalcuLaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137C3360282DE3BE003B907E /* EMICalcuLaterViewController.swift */; };
+		137C3363282DE3F5003B907E /* EMICalculaterViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137C3362282DE3F5003B907E /* EMICalculaterViewFactory.swift */; };
+		137C3365282E19DA003B907E /* UiViewExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137C3364282E19DA003B907E /* UiViewExtentions.swift */; };
+		137C3367282E218C003B907E /* ViewConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137C3366282E218C003B907E /* ViewConstructor.swift */; };
+		137C3369282E31AA003B907E /* EMICalculaterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137C3368282E31AA003B907E /* EMICalculaterDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		137C334D282D279D003B907E /* EMICalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EMICalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		137C3351282D279D003B907E /* EMICalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMICalculatorUITests.swift; sourceTree = "<group>"; };
 		137C3353282D279D003B907E /* EMICalculatorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMICalculatorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		137C3360282DE3BE003B907E /* EMICalcuLaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMICalcuLaterViewController.swift; sourceTree = "<group>"; };
+		137C3362282DE3F5003B907E /* EMICalculaterViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMICalculaterViewFactory.swift; sourceTree = "<group>"; };
+		137C3364282E19DA003B907E /* UiViewExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiViewExtentions.swift; sourceTree = "<group>"; };
+		137C3366282E218C003B907E /* ViewConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstructor.swift; sourceTree = "<group>"; };
+		137C3368282E31AA003B907E /* EMICalculaterDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMICalculaterDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +112,11 @@
 				137C3330282D279A003B907E /* AppDelegate.swift */,
 				137C3332282D279A003B907E /* SceneDelegate.swift */,
 				137C3334282D279A003B907E /* ViewController.swift */,
+				137C3368282E31AA003B907E /* EMICalculaterDataSource.swift */,
+				137C3360282DE3BE003B907E /* EMICalcuLaterViewController.swift */,
+				137C3362282DE3F5003B907E /* EMICalculaterViewFactory.swift */,
+				137C3366282E218C003B907E /* ViewConstructor.swift */,
+				137C3364282E19DA003B907E /* UiViewExtentions.swift */,
 				137C3336282D279A003B907E /* Main.storyboard */,
 				137C3339282D279C003B907E /* Assets.xcassets */,
 				137C333B282D279C003B907E /* LaunchScreen.storyboard */,
@@ -259,7 +274,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				137C3335282D279A003B907E /* ViewController.swift in Sources */,
+				137C3365282E19DA003B907E /* UiViewExtentions.swift in Sources */,
+				137C3367282E218C003B907E /* ViewConstructor.swift in Sources */,
 				137C3331282D279A003B907E /* AppDelegate.swift in Sources */,
+				137C3361282DE3BE003B907E /* EMICalcuLaterViewController.swift in Sources */,
+				137C3363282DE3F5003B907E /* EMICalculaterViewFactory.swift in Sources */,
+				137C3369282E31AA003B907E /* EMICalculaterDataSource.swift in Sources */,
 				137C3333282D279A003B907E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -443,6 +463,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -471,6 +492,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
