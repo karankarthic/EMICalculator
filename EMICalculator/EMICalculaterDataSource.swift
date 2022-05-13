@@ -36,9 +36,6 @@ struct ValuesForEMICalcus {
         let   rPower: Double = pow(1+interestRateDecimal,months)
 
         let  monthlyPayments: Double = LoanAmount * interestRateDecimal * rPower / (rPower - 1)
-//        let  totalPayments: Double = monthlyPayments * months
-//        let  yearlyPayments: Double = monthlyPayments * 12
-//        let  totalInterest: Double = totalPayments - LoanAmount
         return monthlyPayments
     }
     
@@ -80,7 +77,7 @@ struct ValuesForEMICalcus {
               monthName = dateFormatter.string(from: then)
             }
             
-            let value = EMITableChartValue.init(month: "\(monthName)", intrestPaid: eachMontIntreset, balncePrincipal: principal, paidPrincipal: principalPaidPerMonth)
+            let value = EMITableChartValue.init(month: monthName, intrestPaid: eachMontIntreset, balncePrincipal: principal, paidPrincipal: principalPaidPerMonth)
             
             values.values.append(value)
         }
