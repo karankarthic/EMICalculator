@@ -21,6 +21,8 @@
 		137C3365282E19DA003B907E /* UiViewExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137C3364282E19DA003B907E /* UiViewExtentions.swift */; };
 		137C3367282E218C003B907E /* ViewConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137C3366282E218C003B907E /* ViewConstructor.swift */; };
 		137C3369282E31AA003B907E /* EMICalculaterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137C3368282E31AA003B907E /* EMICalculaterDataSource.swift */; };
+		137C336B283211E0003B907E /* EMITableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137C336A283211E0003B907E /* EMITableController.swift */; };
+		137C336D28321334003B907E /* EMITableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137C336C28321334003B907E /* EMITableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		137C3364282E19DA003B907E /* UiViewExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiViewExtentions.swift; sourceTree = "<group>"; };
 		137C3366282E218C003B907E /* ViewConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstructor.swift; sourceTree = "<group>"; };
 		137C3368282E31AA003B907E /* EMICalculaterDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMICalculaterDataSource.swift; sourceTree = "<group>"; };
+		137C336A283211E0003B907E /* EMITableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMITableController.swift; sourceTree = "<group>"; };
+		137C336C28321334003B907E /* EMITableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMITableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 				137C3334282D279A003B907E /* ViewController.swift */,
 				137C3368282E31AA003B907E /* EMICalculaterDataSource.swift */,
 				137C3360282DE3BE003B907E /* EMICalcuLaterViewController.swift */,
+				137C336A283211E0003B907E /* EMITableController.swift */,
+				137C336C28321334003B907E /* EMITableCell.swift */,
 				137C3362282DE3F5003B907E /* EMICalculaterViewFactory.swift */,
 				137C3366282E218C003B907E /* ViewConstructor.swift */,
 				137C3364282E19DA003B907E /* UiViewExtentions.swift */,
@@ -275,6 +281,8 @@
 			files = (
 				137C3335282D279A003B907E /* ViewController.swift in Sources */,
 				137C3365282E19DA003B907E /* UiViewExtentions.swift in Sources */,
+				137C336D28321334003B907E /* EMITableCell.swift in Sources */,
+				137C336B283211E0003B907E /* EMITableController.swift in Sources */,
 				137C3367282E218C003B907E /* ViewConstructor.swift in Sources */,
 				137C3331282D279A003B907E /* AppDelegate.swift in Sources */,
 				137C3361282DE3BE003B907E /* EMICalcuLaterViewController.swift in Sources */,

@@ -19,6 +19,11 @@ struct EMITableChartValues{
     var values:[EMITableChartValue]
 }
 
+enum TenureType {
+    case month
+    case year
+}
+
 struct ValuesForEMICalcus {
     var principal:Double
     var interest:Double
@@ -59,19 +64,26 @@ struct ValuesForEMICalcus {
         
         var principal = self.principal.rounded()
         
-        for count in 1..<(Int((tenure.rounded()*12) + 1)){
+        let tenureCout = Int(((tenure) * 12))
+        for count in 0..<(tenureCout){
             
             let eachMontIntreset = getMonthlyIntrest(principal: principal).rounded()
             
             let principalPaidPerMonth = (monthlyEMI - eachMontIntreset).rounded()
             
+            if principal > principalPaidPerMonth{
+            
             principal = (principal - principalPaidPerMonth).rounded()
+                
+            }else{
+                principal = (principalPaidPerMonth - principal).rounded()
+            }
             
             let now = Date()
             let calendar = Calendar.current
 
             var monthName = ""
-            if let then = calendar.date(byAdding: .month, value: count, to: now) {
+            if let then = calendar.date(byAdding: .month, value: (count + 1), to: now) {
               let dateFormatter = DateFormatter()
               dateFormatter.dateFormat = "MMM-YY"
               monthName = dateFormatter.string(from: then)

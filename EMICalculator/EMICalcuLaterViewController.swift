@@ -46,7 +46,7 @@ class EMICalcuLaterViewController:UIViewController{
         button.setTitle("EMI Chart", for: .normal)
         button.backgroundColor = .purple
         button.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        button.addTarget(self, action: #selector(reset), for: .touchUpInside)
+        button.addTarget(self, action: #selector(pushEMITable), for: .touchUpInside)
         return button
     }()
     
@@ -172,7 +172,9 @@ extension EMICalcuLaterViewController{
         
         let tenureValue:Double
         
-        if tenureChoiceSecment.selectedSegmentIndex == 0{
+        let tenureChoice = tenureChoiceSecment.selectedSegmentIndex
+        
+        if  tenureChoice == 0{
             tenureValue = tenure
         }else{
             tenureValue = (tenure/12)
@@ -193,6 +195,16 @@ extension EMICalcuLaterViewController{
         
         self.dataSource.updateValue(valuesForEMICalcus: .init(principal: 0, interest: 0, tenure: 0))
         self.view.endEditing(true)
+    }
+    
+    @objc private func pushEMITable(){
+        
+//        if dataSource.data.tenure > 1{
+            let Vc = EMITableController(style: .plain)
+            Vc.data = emiChartValues
+            self.navigationController?.pushViewController(Vc, animated: true)
+//        }
+        
     }
     
     
