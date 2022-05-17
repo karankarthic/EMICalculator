@@ -99,7 +99,7 @@ struct ValuesForEMICalcus {
     }
     
     private func getMonthlyIntrest(principal:Double) ->Double{
-        return (calculatePercentage(value: principal, percentageVal: self.interest) / (self.tenure * 12))
+        return (calculatePercentage(value: principal, percentageVal: self.interest) / 12)
     }
     
     private func calculatePercentage(value:Double,percentageVal:Double)->Double{
