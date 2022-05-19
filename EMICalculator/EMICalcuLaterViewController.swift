@@ -200,7 +200,7 @@ extension EMICalcuLaterViewController{
     @objc private func pushEMITable(){
         
 //        if dataSource.data.tenure > 1{
-            let Vc = EMITableController(style: .plain)
+            let Vc = EMIGridController()
             Vc.data = emiChartValues
             self.navigationController?.pushViewController(Vc, animated: true)
 //        }

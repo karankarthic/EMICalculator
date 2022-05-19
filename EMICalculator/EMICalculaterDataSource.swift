@@ -9,9 +9,20 @@ import Foundation
 
 struct EMITableChartValue{
     let month:String
+    let paidPrincipal:Double
     let intrestPaid:Double
     let balncePrincipal:Double
-    let paidPrincipal:Double
+
+    func returnArrayOFValues()->[Any]{
+        let mirror = Mirror(reflecting: self)
+        var result: [Any] = []
+        for (_, value) in mirror.children {
+            
+            result.append(value)
+        }
+        
+        return result
+    }
     
 }
 
@@ -64,7 +75,7 @@ struct ValuesForEMICalcus {
         
         var principal = self.principal.rounded()
         
-        let tenureCout = Int(((tenure) * 12))
+        let tenureCout = Int(((tenure) * 12) + 1)
         for count in 0..<(tenureCout){
             
             let eachMontIntreset = getMonthlyIntrest(principal: principal).rounded()
@@ -89,7 +100,7 @@ struct ValuesForEMICalcus {
               monthName = dateFormatter.string(from: then)
             }
             
-            let value = EMITableChartValue.init(month: monthName, intrestPaid: eachMontIntreset, balncePrincipal: principal, paidPrincipal: principalPaidPerMonth)
+            let value = EMITableChartValue(month: monthName, paidPrincipal: principalPaidPerMonth, intrestPaid: eachMontIntreset, balncePrincipal: principal)
             
             values.values.append(value)
         }

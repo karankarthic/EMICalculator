@@ -9,24 +9,33 @@ import UIKit
 
 class EMITableCell:UITableViewCell{
     
-    lazy private var monthLable:UILabel = ViewFactory.titleLable()
-    lazy private var paidPrincipalLable:UILabel = ViewFactory.titleLable()
-    lazy private var intrestPaidLable:UILabel = ViewFactory.titleLable()
-    lazy private var balancePrincipalLable:UILabel = ViewFactory.titleLable()
+    lazy var wrapperView:UIStackView = ViewFactory.stackView()
     
-    lazy private var wrapperView:UIStackView = ViewFactory.stackView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setUpView()
+        
     }
     
     func configureCellValues(value:EMITableChartValue){
         
-        monthLable.text = value.month
-        paidPrincipalLable.text = "\(value.paidPrincipal)"
-        intrestPaidLable.text = "\(value.intrestPaid)"
-        balancePrincipalLable.text = "\(value.balncePrincipal)"
+        for item in value.returnArrayOFValues(){
+            
+            let titleLable:UILabel = ViewFactory.titleLable()
+            titleLable.widthAnchor.constraint(greaterThanOrEqualToConstant: 100).isActive = true
+            titleLable.text = "\(item)"
+            
+            wrapperView.addArrangedSubview(titleLable)
+           
+            
+        }
+        
+        setUpView()
+    }
+    
+    func returnSizeOfStack() -> CGFloat {
+        self.layoutIfNeeded()
+        return self.wrapperView.frame.width
     }
     
     
@@ -41,8 +50,12 @@ extension EMITableCell{
     
     private func setUpView(){
         
-        let layout = EMITableCellAndHeaderLayOut.init(monthLable: monthLable, paidPrincipalLable: paidPrincipalLable, intrestPaidLable: intrestPaidLable, balancePrincipalLable: balancePrincipalLable)
-        layout.constructLayoutForContainerView(self.contentView)
+        self.selectionStyle = .none
+        self.contentView.addSubview(wrapperView)
+        
+        wrapperView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
+        wrapperView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+
     }
 }
 
@@ -55,6 +68,7 @@ extension EMITableCell{
             lable.font = .systemFont(ofSize: 14, weight: .medium)
             lable.textAlignment = .right
             lable.clipsToBounds = true
+            lable.lineBreakMode = .byClipping
             lable.backgroundColor = .clear
             return lable
         }

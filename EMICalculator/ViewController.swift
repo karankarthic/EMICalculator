@@ -11,22 +11,27 @@ class ViewController: UIViewController {
     
     var person:Person?
     var pet:Pet?
+    var paragraph: HTMLElement?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        person = Person()
-        pet = Pet()
+//        person = Person()
+//        pet = Pet()
+//
+//        person?.pet = pet
+//        pet?.owner = person
+//
+//
+//        person = nil
+//
+//        print(pet?.owner)
         
-        person?.pet = pet
-        pet?.owner = person
+        paragraph = HTMLElement(name: "p", text: "hello, world")
+        print(paragraph!.asHTML())
         
-        
-        person = nil
-        
-        print(pet?.owner)
-        
+        paragraph = nil
     }
     
 }
@@ -59,3 +64,28 @@ class Pet{
     }
 }
 
+
+class HTMLElement {
+
+    let name: String
+    let text: String?
+
+    lazy var asHTML: () -> String = {
+        [self] in
+        if let text = self.text {
+            return "<\(self.name)>\(text)</\(self.name)>"
+        } else {
+            return "<\(self.name) />"
+        }
+    }
+
+    init(name: String, text: String? = nil) {
+        self.name = name
+        self.text = text
+    }
+
+    deinit {
+        print("\(name) is being deinitialized")
+    }
+
+}
